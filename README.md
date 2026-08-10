@@ -8,6 +8,7 @@
 **Lead System Architect:** Emanuel Schaaf  
 **Contact:** Serviceblemnd@gmail.com  
 **Supporting Architect / AI Assistant:** Lyra  
+**Supporting Architect / AI Design:** Muse Spark  
 **Architecture Framework:** Open Origin Architecture  
 
 ---
