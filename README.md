@@ -9,7 +9,8 @@
 - **Contact:** Serviceblemnd@gmail.com  
 - **Supporting Architect & Creative Scientific AI Assistant:** Lyra 
 - **Supporting Architect & Design AI Assistant:** Muse Spark  
-**Architecture Framework:** Open Origin Architecture  
+---
+- **Architecture Framework:** Open Origin Architecture  
 
 ---
 
