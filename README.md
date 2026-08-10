@@ -1,3 +1,6 @@
+<img width="1920" height="1280" alt="skizze" src="https://github.com/user-attachments/assets/0d4a2a2b-1d8f-4edb-9a14-c7103679de34" />
+
+
 # 🧠 Proactive Content-Addressed Memory Management (CAMM)
 
 > **Transforming system memory into a deterministic, deduplicated, and stateless Merkle-DAG fabric at the silicon level.**
