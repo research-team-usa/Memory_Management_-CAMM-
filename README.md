@@ -1,6 +1,6 @@
 # 🧠 Proactive Content-Addressed Memory Management (CAMM)
 
-> **Transforming system memory into a deterministic, deduplicated, and stateless Merkle-DAG fabric.**
+> **Transforming system memory into a deterministic, deduplicated, and stateless Merkle-DAG fabric at the silicon level.**
 
 **Lead System Architect:** Emanuel Schaaf  
 **Contact:** Serviceblemnd@gmail.com  
@@ -9,39 +9,45 @@
 
 ---
 
+## ⚠️ The Hardware Imperative
+
+It is critical to understand that **this architectural bottleneck cannot be solved purely through software.** 
+
+Attempting to perform real-time, cryptographic memory deduplication on the software or OS-kernel level results in catastrophic system bus stalls. The CPU is forced to wait for data to be hashed and verified, destroying execution speed and creating unacceptable latency. 
+
+To achieve zero-latency deduplication, **this logic must be baked directly into the hardware.** The CAMM architecture requires physical implementation within the Memory Management Unit (MMU) silicon, utilizing:
+*   **A Custom Blake3 ASIC:** To offload cryptographic hashing entirely from the main CPU.
+*   **Asynchronous SRAM Write Buffers:** To implement a "Drop-and-Go" pipeline, ensuring the CPU never waits for a memory commit.
+*   **The Bitwise Verification Engine (BVE):** Physical XOR logic gates that resolve hash collisions asynchronously at the hardware level.
+
+---
+
 ## 🚀 The Paradigm Shift
 
-Modern operating systems and enterprise cloud hypervisors rely on legacy virtual memory management (VM) architectures. These traditional systems allocate physical RAM blindly based on arbitrary process boundaries, leading to massive memory duplication and extreme latency bottlenecks.
+Modern operating systems and AI hypervisors rely on legacy virtual memory architectures. These traditional systems allocate physical RAM blindly based on arbitrary process boundaries, leading to massive memory duplication and linear hardware scaling limits.
 
-The **CAMM architecture** completely replaces this outdated model. By embedding a Merkle-Directed Acyclic Graph directly into the Memory Management Unit (MMU) silicon, physical memory is allocated by content rather than location. This achieves hyper-dense resource efficiency, instant zero-copy context transfers, and absolute mathematical collision resistance.
-
----
-
-## ⚙️ Core Architectural Breakthroughs
-
-### 1. Native Hardware Deduplication 🧩
-Instead of isolated memory allocation per process, CAMM utilizes a Central Automated Terminal approach. Physical memory is allocated only once per unique dataset based on a cryptographic content hash (H_domain(P)). Shared LLM weights and redundant container states are natively deduplicated system-wide.
-
-### 2. Zero-Latency CPU Pipeline ⚡
-CAMM removes hashing latency from the CPU's critical path via an asynchronous "Drop-and-Go" pipeline.
-* **SRAM Write Buffer:** Ultra-fast L4 SRAM intercepts writes, allowing the CPU to continue execution instantly.
-* **Blake3 ASIC & Cache-Line Merkle Sub-Hashing:** A 4096-Byte memory page is split into 64-Byte chunks. The ASIC recalculates only the altered Merkle branch, completing tree updates in exactly 51 clock cycles (25.5 nanoseconds).
-
-### 3. 100% Deterministic Collision Resolution 🛡️
-The system does not rely on the statistical improbability of 256-bit hash collisions. It integrates a **Bitwise Verification Engine (BVE)** directly into the memory controller.
-* **XOR Vector Logic:** If a hash exists, the BVE performs an asynchronous bit-by-bit hardware validation between the new shadow page and the existing physical page using 512-bit wide ALU vector registers.
-* **Extended Pointer Tuple:** True collisions are flawlessly resolved without stalling the pipeline by extending the address space with a Collision Counter (Key = H_domain(P), C).
-
-### 4. Exponential Power Efficiency 🔋
-By deduplicating the memory fabric, CAMM drastically reduces the number of active physical pages. This direct reduction in RAM usage proportionally decreases the continuous DRAM refresh power overhead, unlocking new potential for mobile edge computing and server clusters.
+By embedding a Merkle-Directed Acyclic Graph directly into the MMU, CAMM allocates physical memory by content hash ($H_{domain}(P)$) rather than location. This achieves hyper-dense resource efficiency, eliminating up to 80% of redundant RAM usage (like shared LLM weights and container states) while drastically lowering DRAM refresh power consumption.
 
 ---
 
-## 📊 System Simulation
+## 📦 Repository Structure
 
-The repository includes the headless physical system simulation script (`camm.py`), which executes the architectural mechanics, demonstrates memory allocation differences, and processes the BVE collision logic over time.
+This repository contains the foundational architectural blueprints and the logical execution proofs.
 
-To execute the simulation:
+| File | Description |
+| :--- | :--- |
+| `Proactive_Content-Addressed_Memory_Management...pdf` | The definitive Master Dossier. Contains the complete mathematical, logical, and physical ASIC system specifications. |
+| `camm.py` | The headless Python execution model. This script simulates the architectural mechanics, BVE collision logic, and exports dynamic visualizations of the logarithmic memory efficiency. |
+| `LICENSE.md` | The Open Origin Architecture License (Apache 2.0 based with functional copyleft directives). |
+| `README.md` | This document. |
+
+---
+
+## 📊 Logical System Simulation
+
+While the final implementation requires silicon, the mathematical and logical mechanics of the Merkle-DAG deduplication and BVE collision resolution are fully provable via software simulation.
+
+To run the architectural execution proof:
 
 ```bash
 python camm.py
