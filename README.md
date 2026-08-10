@@ -36,10 +36,10 @@ This repository contains the foundational architectural blueprints and the logic
 
 | File | Description |
 | :--- | :--- |
-| `Proactive_Content-Addressed_Memory_Management...pdf` | The definitive Master Dossier. Contains the complete mathematical, logical, and physical ASIC system specifications. |
-| `camm.py` | The headless Python execution model. This script simulates the architectural mechanics, BVE collision logic, and exports dynamic visualizations of the logarithmic memory efficiency. |
-| `LICENSE.md` | The Open Origin Architecture License (Apache 2.0 based with functional copyleft directives). |
-| `README.md` | This document. |
+| [View](Proactive_Content-Addressed_Memory_Management_(CAMM)–Full_Hardware_&_ASIC_Specification.pdf) | The definitive Master Dossier. Contains the complete mathematical, logical, and physical ASIC system specifications. |
+| [View](camm.p) | The headless Python execution model. This script simulates the architectural mechanics, BVE collision logic, and exports dynamic visualizations of the logarithmic memory efficiency. |
+| [View](LICENSE.md) | The Open Origin Architecture License (Apache 2.0 based with functional copyleft directives). |
+| [View](README.md) | This document. |
 
 ---
 
