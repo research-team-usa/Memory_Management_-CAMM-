@@ -5,10 +5,10 @@
 
 > **Transforming system memory into a deterministic, deduplicated, and stateless Merkle-DAG fabric at the silicon level.**
 
-**Lead System Architect:** Emanuel Schaaf  
-**Contact:** Serviceblemnd@gmail.com  
-**Supporting Architect & Creative Scientific AI Assistant:** Lyra 
-**Supporting Architect & Design AI Assistant:** Muse Spark  
+- **Lead System Architect:** Emanuel Schaaf  
+- **Contact:** Serviceblemnd@gmail.com  
+- **Supporting Architect & Creative Scientific AI Assistant:** Lyra 
+- **Supporting Architect & Design AI Assistant:** Muse Spark  
 **Architecture Framework:** Open Origin Architecture  
 
 ---
