@@ -5,7 +5,7 @@
 
 # CAMM
 
-Eigenstaendig kompilierbarer CAMM-Kern mit persistentem Content Store, RAM-LRU-Cache,
+Eigenständig kompilierbarer CAMM-Kern mit persistentem Content Store, RAM-LRU-Cache,
 adaptiver Policy, Metriken, Systembeobachtung, asynchronem Worker und Callback-Adapter.
 
 Der Kern manipuliert keine CUDA-Aufrufe. Die konkrete llama.cpp-Version bindet ihre
