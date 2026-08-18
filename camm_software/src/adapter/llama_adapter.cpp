@@ -1,0 +1,6 @@
+#include "camm/llama_adapter.hpp"
+#include <utility>
+namespace camm{
+bool RuntimeFingerprint::operator==(const RuntimeFingerprint&o)const noexcept{return llama_commit==o.llama_commit&&backend==o.backend&&model==o.model&&tokenizer==o.tokenizer&&template_name==o.template_name&&context_size==o.context_size&&kv_type==o.kv_type;}
+LlamaAdapter::LlamaAdapter(RuntimeFingerprint f):current_(std::move(f)){}void LlamaAdapter::callbacks(Export e,Restore r){export_=std::move(e);restore_=std::move(r);}bool LlamaAdapter::save(Buffer&b)const{return export_&&export_(b);}bool LlamaAdapter::load(const Buffer&b)const{return restore_&&restore_(b);}bool LlamaAdapter::compatible(const RuntimeFingerprint&f)const{return current_==f;}
+Key LlamaAdapter::prefix_key(const std::vector<std::uint32_t>&t,std::uint64_t c)const{std::string r=current_.llama_commit+current_.backend;Key k;k.model=hash_primary(current_.model.data(),current_.model.size());k.tokenizer=hash_primary(current_.tokenizer.data(),current_.tokenizer.size());k.runtime=hash_primary(r.data(),r.size());k.context=c;k.token_count=t.size();k.byte_count=t.size()*sizeof(std::uint32_t);k.hash1=hash_primary(t.data(),k.byte_count);k.hash2=hash_secondary(t.data(),k.byte_count);return k;}}

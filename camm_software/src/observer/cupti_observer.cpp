@@ -1,0 +1,2 @@
+#include "camm/observer.hpp"
+namespace camm{CuptiObserver::CuptiObserver(ObserverMode m):mode_(m){}bool CuptiObserver::start(){active_=false;return mode_==ObserverMode::Disabled;}void CuptiObserver::stop(){active_=false;}bool CuptiObserver::active()const noexcept{return active_;}std::string CuptiObserver::status()const{return mode_==ObserverMode::Disabled?"CUPTI disabled":"CUPTI adapter not linked in standalone build";}}

@@ -1,0 +1,2 @@
+#include "camm/policy.hpp"
+namespace camm{AdaptivePolicy::AdaptivePolicy(PolicyConfig c):config_(c){}bool AdaptivePolicy::should_restore(const Cost&c)const{return c.compatible&&c.recompute_us&&static_cast<double>(c.restore_us)<static_cast<double>(c.recompute_us)*(1.0-config_.advantage);}bool AdaptivePolicy::keep_ram(const Cost&c)const{return c.compatible&&c.size>=config_.min_size&&c.recompute_us>=config_.min_recompute_us;}bool AdaptivePolicy::persist(const Cost&c)const{return keep_ram(c)&&c.reuse>=config_.min_reuse&&should_restore(c);}}

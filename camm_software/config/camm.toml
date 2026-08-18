@@ -1,0 +1,14 @@
+[ram]
+limit_mib = 2048
+[nvme]
+path = "./camm-cache.bin"
+limit_mib = 32768
+workers = 1
+[policy]
+minimum_object_kib = 64
+minimum_recompute_us = 5000
+minimum_reuse_count = 2
+restore_advantage_percent = 20
+[observer]
+system_interval_ms = 1000
+cupti_enabled = false

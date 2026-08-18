@@ -1,0 +1,4 @@
+#include "camm/metrics.hpp"
+#include <iomanip>
+#include <sstream>
+namespace camm{void Metrics::request(){++requests_;}void Metrics::ram_hit(std::uint64_t n){++ram_hits_;read_bytes_+=n;}void Metrics::disk_hit(std::uint64_t n){++disk_hits_;read_bytes_+=n;}void Metrics::miss(){++misses_;}void Metrics::written(std::uint64_t n){written_bytes_+=n;}MetricsSnapshot Metrics::snapshot()const{return{requests_.load(),ram_hits_.load(),disk_hits_.load(),misses_.load(),read_bytes_.load(),written_bytes_.load()};}std::string Metrics::report()const{auto s=snapshot();double h=s.requests?100.0*(s.ram_hits+s.disk_hits)/s.requests:0.0;std::ostringstream o;o<<"requests="<<s.requests<<" ram_hits="<<s.ram_hits<<" disk_hits="<<s.disk_hits<<" misses="<<s.misses<<" hit_rate="<<std::fixed<<std::setprecision(2)<<h<<"%";return o.str();}}

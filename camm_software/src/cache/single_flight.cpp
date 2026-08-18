@@ -1,0 +1,2 @@
+#include "camm/ram_cache.hpp"
+namespace camm{std::shared_future<SingleFlight::Result>SingleFlight::execute(const Key&k,std::function<Result()>op){std::lock_guard<std::mutex>g(mutex_);auto i=operations_.find(k);if(i!=operations_.end())return i->second;auto f=std::async(std::launch::async,[this,k,op=std::move(op)]{try{auto r=op();remove(k);return r;}catch(...){remove(k);throw;}}).share();operations_[k]=f;return f;}void SingleFlight::remove(const Key&k){std::lock_guard<std::mutex>g(mutex_);operations_.erase(k);}}
